@@ -1,5 +1,5 @@
 {
-  "name": "@jevenson76/git-mcp-server-enhanced",
+  "name": "git-mcp-wizard",
   "version": "1.0.0",
   "description": "Enhanced Git MCP Server - A comprehensive Model Context Protocol server for Git operations",
   "keywords": ["mcp", "git", "model-context-protocol", "typescript", "ai-tools"],
@@ -29,9 +29,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "inspector": "npx @modelcontextprotocol/inspector node dist/index.js",
-    "start": "node dist/index.js",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run clean && npm run build"
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

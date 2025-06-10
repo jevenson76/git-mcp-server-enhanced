@@ -47,7 +47,7 @@ This enhanced version provides significant improvements over the original `mcp-s
 ### Install from npm
 
 ```bash
-npm install -g @jevenson76/git-mcp-server-enhanced
+npm install -g git-mcp-wizard
 ```
 
 ### Install from source
@@ -68,9 +68,9 @@ Add to your Claude Desktop configuration:
 ```json
 {
   "mcpServers": {
-    "git-enhanced": {
+    "git-wizard": {
       "command": "npx",
-      "args": ["@jevenson76/git-mcp-server-enhanced"],
+      "args": ["git-mcp-wizard"],
       "env": {
         "LOG_LEVEL": "info"
       }
@@ -197,5 +197,5 @@ MIT License - see [LICENSE](LICENSE) for details.
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/jevenson76/git-mcp-server-enhanced)
-- [npm Package](https://www.npmjs.com/package/@jevenson76/git-mcp-server-enhanced)
+- [npm Package](https://www.npmjs.com/package/git-mcp-wizard)
 - [Issue Tracker](https://github.com/jevenson76/git-mcp-server-enhanced/issues)
