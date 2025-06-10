@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "git-enhanced": {
+      "command": "npx",
+      "args": ["@jevenson76/git-mcp-server-enhanced"],
+      "env": {
+        "LOG_LEVEL": "info",
+        "LOG_FORMAT": "pretty",
+        "GIT_DEFAULT_BRANCH": "main",
+        "GIT_SIGN_COMMITS": "false",
+        "GIT_MAX_DIFF_SIZE": "1000000",
+        "GIT_OPERATION_TIMEOUT": "30000",
+        "ALLOW_FORCE_PUSH": "false",
+        "ALLOW_DESTRUCTIVE_OPERATIONS": "false",
+        "REQUIRE_CONFIRMATION_FOR_PUSH": "true"
+      }
+    },
+    "git-enhanced-dev": {
+      "command": "node",
+      "args": ["/path/to/git-mcp-server-enhanced/dist/index.js"],
+      "env": {
+        "LOG_LEVEL": "debug",
+        "LOG_FORMAT": "pretty",
+        "ALLOWED_REPOSITORY_PATHS": "/home/user/dev,/home/user/projects"
+      }
+    }
+  }
+}
