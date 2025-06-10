@@ -1,19 +1,13 @@
 import winston from 'winston';
 import { config } from '../config/index.js';
+import { Writable } from 'stream';
 
-// Create a custom silent transport that does nothing
-class SilentTransport extends winston.transports.Stream {
-  constructor(opts?: winston.transports.StreamTransportOptions) {
-    super(opts);
+// Create a no-op writable stream for silent logging
+const nullStream = new Writable({
+  write: (chunk, encoding, callback) => {
+    callback();
   }
-
-  log(info: any, callback: () => void) {
-    // Do nothing - just call callback immediately
-    if (callback) {
-      setImmediate(callback);
-    }
-  }
-}
+});
 
 const logFormat = config.logging.format === 'pretty' ?
   winston.format.combine(
@@ -32,8 +26,8 @@ const logFormat = config.logging.format === 'pretty' ?
 // When running as MCP server, use silent transport to avoid interfering with stdio
 const transports = [];
 if (process.env.MCP_MODE === 'stdio' || process.argv.includes('--stdio') || !process.env.GIT_MCP_WIZARD_DEBUG) {
-  // Use custom silent transport
-  transports.push(new SilentTransport());
+  // Use stream transport with null stream for silent logging
+  transports.push(new winston.transports.Stream({ stream: nullStream }));
 } else {
   // Log to console for development
   transports.push(new winston.transports.Console());
