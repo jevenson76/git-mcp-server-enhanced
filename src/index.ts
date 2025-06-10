@@ -1,8 +1,5 @@
 #!/usr/bin/env node
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { SSEServerTransport } from '@modelcontextprotocol/sdk/server/sse.js';
-import express from 'express';
 import { config } from './config/index.js';
 import { createGitServer } from './server.js';
 import { logger } from './utils/logger.js';
@@ -15,34 +12,23 @@ async function main(): Promise<void> {
       logger.info('Starting Git MCP server with stdio transport');
       const transport = new StdioServerTransport();
       await server.connect(transport);
-    } else if (config.transport.type === 'sse') {
-      logger.info(`Starting Git MCP server with SSE transport on ${config.transport.host}:${config.transport.port}`);
       
-      const app = express();
-      app.use(express.json());
+      // Handle shutdown gracefully
+      process.on('SIGINT', async () => {
+        logger.info('Shutting down Git MCP server...');
+        await server.close();
+        process.exit(0);
+      });
       
-      const transport = new SSEServerTransport('/', app);
-      await server.connect(transport);
-      
-      app.listen(config.transport.port, config.transport.host, () => {
-        logger.info(`Git MCP server listening on http://${config.transport.host}:${config.transport.port}`);
+      process.on('SIGTERM', async () => {
+        logger.info('Shutting down Git MCP server...');
+        await server.close();
+        process.exit(0);
       });
     } else {
-      throw new Error(`Unknown transport type: ${config.transport.type}`);
+      // SSE transport would require additional dependencies
+      throw new Error(`Transport type ${config.transport.type} not yet implemented`);
     }
-    
-    // Handle shutdown gracefully
-    process.on('SIGINT', async () => {
-      logger.info('Shutting down Git MCP server...');
-      await server.close();
-      process.exit(0);
-    });
-    
-    process.on('SIGTERM', async () => {
-      logger.info('Shutting down Git MCP server...');
-      await server.close();
-      process.exit(0);
-    });
     
   } catch (error) {
     logger.error('Failed to start Git MCP server', error);
