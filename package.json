@@ -1,6 +1,6 @@
 {
   "name": "git-mcp-wizard",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Git MCP Wizard - A comprehensive Model Context Protocol server for Git operations",
   "keywords": ["mcp", "git", "model-context-protocol", "typescript", "ai-tools"],
   "homepage": "https://github.com/jevenson76/git-mcp-wizard",
