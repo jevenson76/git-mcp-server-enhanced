@@ -4,6 +4,7 @@ import { GitLogTool } from './log.js';
 import { GitDiffTool } from './diff.js';
 import { GitShowTool } from './show.js';
 import { GitBlameTool } from './blame.js';
+import { zodToJsonSchema } from '../../utils/schema.js';
 
 export function registerHistoryTools(server: Server, sessionManager: SessionManager): void {
   const tools = [
@@ -18,9 +19,7 @@ export function registerHistoryTools(server: Server, sessionManager: SessionMana
       {
         name: tool.name,
         description: tool.description,
-        inputSchema: tool.inputSchema?.shape ? 
-          { type: 'object', properties: tool.inputSchema.shape } : 
-          undefined,
+        inputSchema: tool.inputSchema ? zodToJsonSchema(tool.inputSchema) : undefined,
       },
       async (args) => tool.handler(args, sessionManager)
     );

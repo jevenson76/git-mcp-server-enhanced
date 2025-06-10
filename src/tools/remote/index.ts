@@ -4,6 +4,7 @@ import { GitRemoteTool } from './remote.js';
 import { GitFetchTool } from './fetch.js';
 import { GitPullTool } from './pull.js';
 import { GitPushTool } from './push.js';
+import { zodToJsonSchema } from '../../utils/schema.js';
 
 export function registerRemoteTools(server: Server, sessionManager: SessionManager): void {
   const tools = [
@@ -18,9 +19,7 @@ export function registerRemoteTools(server: Server, sessionManager: SessionManag
       {
         name: tool.name,
         description: tool.description,
-        inputSchema: tool.inputSchema?.shape ? 
-          { type: 'object', properties: tool.inputSchema.shape } : 
-          undefined,
+        inputSchema: tool.inputSchema ? zodToJsonSchema(tool.inputSchema) : undefined,
       },
       async (args) => tool.handler(args, sessionManager)
     );

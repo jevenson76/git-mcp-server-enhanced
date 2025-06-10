@@ -3,6 +3,7 @@ import { SessionManager } from '../../utils/session.js';
 import { GitInitTool } from './init.js';
 import { GitCloneTool } from './clone.js';
 import { SetWorkingDirTool, ClearWorkingDirTool } from './session.js';
+import { zodToJsonSchema } from '../../utils/schema.js';
 
 export function registerRepositoryTools(server: Server, sessionManager: SessionManager): void {
   const tools = [
@@ -17,9 +18,7 @@ export function registerRepositoryTools(server: Server, sessionManager: SessionM
       {
         name: tool.name,
         description: tool.description,
-        inputSchema: tool.inputSchema?.shape ? 
-          { type: 'object', properties: tool.inputSchema.shape } : 
-          undefined,
+        inputSchema: tool.inputSchema ? zodToJsonSchema(tool.inputSchema) : undefined,
       },
       async (args) => tool.handler(args, sessionManager)
     );

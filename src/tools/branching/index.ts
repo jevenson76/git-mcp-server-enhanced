@@ -5,6 +5,7 @@ import { GitCheckoutTool } from './checkout.js';
 import { GitMergeTool } from './merge.js';
 import { GitRebaseTool } from './rebase.js';
 import { GitCherryPickTool } from './cherry-pick.js';
+import { zodToJsonSchema } from '../../utils/schema.js';
 
 export function registerBranchingTools(server: Server, sessionManager: SessionManager): void {
   const tools = [
@@ -20,9 +21,7 @@ export function registerBranchingTools(server: Server, sessionManager: SessionMa
       {
         name: tool.name,
         description: tool.description,
-        inputSchema: tool.inputSchema?.shape ? 
-          { type: 'object', properties: tool.inputSchema.shape } : 
-          undefined,
+        inputSchema: tool.inputSchema ? zodToJsonSchema(tool.inputSchema) : undefined,
       },
       async (args) => tool.handler(args, sessionManager)
     );
