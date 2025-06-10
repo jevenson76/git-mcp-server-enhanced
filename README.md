@@ -1,4 +1,4 @@
-# Enhanced Git MCP Server
+# Git MCP Wizard
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Model Context Protocol](https://img.shields.io/badge/MCP-1.0.0-green.svg)](https://modelcontextprotocol.io/)
@@ -53,8 +53,8 @@ npm install -g git-mcp-wizard
 ### Install from source
 
 ```bash
-git clone https://github.com/jevenson76/git-mcp-server-enhanced.git
-cd git-mcp-server-enhanced
+git clone https://github.com/jevenson76/git-mcp-wizard.git
+cd git-mcp-wizard
 npm install
 npm run build
 ```
@@ -196,6 +196,6 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/jevenson76/git-mcp-server-enhanced)
+- [GitHub Repository](https://github.com/jevenson76/git-mcp-wizard)
 - [npm Package](https://www.npmjs.com/package/git-mcp-wizard)
-- [Issue Tracker](https://github.com/jevenson76/git-mcp-server-enhanced/issues)
+- [Issue Tracker](https://github.com/jevenson76/git-mcp-wizard/issues)

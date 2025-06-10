@@ -1,6 +1,6 @@
-# Git MCP Server Examples
+# Git MCP Wizard Examples
 
-This directory contains examples of how to use the Enhanced Git MCP Server with various MCP clients.
+This directory contains examples of how to use Git MCP Wizard with various MCP clients.
 
 ## Claude Desktop Configuration
 
@@ -9,9 +9,9 @@ Add to your Claude Desktop configuration file:
 ```json
 {
   "mcpServers": {
-    "git-enhanced": {
+    "git-wizard": {
       "command": "npx",
-      "args": ["@jevenson76/git-mcp-server-enhanced"],
+      "args": ["git-mcp-wizard"],
       "env": {
         "LOG_LEVEL": "info",
         "GIT_DEFAULT_BRANCH": "main",

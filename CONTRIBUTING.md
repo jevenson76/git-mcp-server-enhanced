@@ -1,6 +1,6 @@
-# Contributing to Enhanced Git MCP Server
+# Contributing to Git MCP Wizard
 
-Thank you for your interest in contributing to the Enhanced Git MCP Server! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to Git MCP Wizard! This document provides guidelines and instructions for contributing.
 
 ## Code of Conduct
 
@@ -43,8 +43,8 @@ By participating in this project, you agree to abide by our code of conduct:
 
 ```bash
 # Clone your fork
-git clone https://github.com/your-username/git-mcp-server-enhanced.git
-cd git-mcp-server-enhanced
+git clone https://github.com/your-username/git-mcp-wizard.git
+cd git-mcp-wizard
 
 # Install dependencies
 npm install

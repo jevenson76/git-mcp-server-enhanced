@@ -1,15 +1,15 @@
 {
   "name": "git-mcp-wizard",
-  "version": "1.0.0",
-  "description": "Enhanced Git MCP Server - A comprehensive Model Context Protocol server for Git operations",
+  "version": "1.0.1",
+  "description": "Git MCP Wizard - A comprehensive Model Context Protocol server for Git operations",
   "keywords": ["mcp", "git", "model-context-protocol", "typescript", "ai-tools"],
-  "homepage": "https://github.com/jevenson76/git-mcp-server-enhanced",
+  "homepage": "https://github.com/jevenson76/git-mcp-wizard",
   "bugs": {
-    "url": "https://github.com/jevenson76/git-mcp-server-enhanced/issues"
+    "url": "https://github.com/jevenson76/git-mcp-wizard/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jevenson76/git-mcp-server-enhanced.git"
+    "url": "git+https://github.com/jevenson76/git-mcp-wizard.git"
   },
   "license": "MIT",
   "author": "jevenson76",
