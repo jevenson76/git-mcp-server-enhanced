@@ -1,0 +1,60 @@
+{
+  "name": "@jevenson76/git-mcp-server-enhanced",
+  "version": "1.0.0",
+  "description": "Enhanced Git MCP Server - A comprehensive Model Context Protocol server for Git operations",
+  "keywords": ["mcp", "git", "model-context-protocol", "typescript", "ai-tools"],
+  "homepage": "https://github.com/jevenson76/git-mcp-server-enhanced",
+  "bugs": {
+    "url": "https://github.com/jevenson76/git-mcp-server-enhanced/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jevenson76/git-mcp-server-enhanced.git"
+  },
+  "license": "MIT",
+  "author": "jevenson76",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "dev": "tsx watch src/index.ts",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "inspector": "npx @modelcontextprotocol/inspector node dist/index.js",
+    "start": "node dist/index.js",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "simple-git": "^3.25.0",
+    "zod": "^3.23.8",
+    "winston": "^3.14.2",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.9",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.2",
+    "rimraf": "^5.0.7",
+    "ts-jest": "^29.1.5",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
