@@ -1,25 +1,42 @@
 # Enhanced Git MCP Server
 
-An enhanced Model Context Protocol (MCP) server for Git operations with improved safety, features, and architecture.
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-blue.svg)](https://www.typescriptlang.org/)
+[![Model Context Protocol](https://img.shields.io/badge/MCP-1.0.0-green.svg)](https://modelcontextprotocol.io/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 
-## Overview
+A comprehensive, type-safe Model Context Protocol (MCP) server for Git operations with enhanced safety features, modular architecture, and extensive tool coverage.
 
-This is a comprehensive Git MCP server that provides safe, powerful Git operations through the Model Context Protocol. Built with TypeScript for better type safety and featuring a modular architecture for extensibility.
+## 🚀 Key Improvements Over Original
 
-## Features
+This enhanced version provides significant improvements over the original `mcp-server-git`:
 
-- **Comprehensive Git Operations**: Full suite of Git commands with enhanced safety checks
-- **TypeScript Implementation**: Full type safety and better developer experience
-- **Modular Architecture**: Clean separation of concerns with extensible design
-- **Enhanced Safety**: Validation, confirmation prompts for destructive operations
-- **Better Error Handling**: Detailed error messages and recovery suggestions
-- **Session Management**: Working directory persistence across operations
-- **Advanced Features**: Worktrees, cherry-pick, stash, interactive rebase support
-- **Configurable**: Environment-based configuration with sensible defaults
-- **Logging**: Structured logging with multiple levels and formats
-- **Security**: Path validation, operation restrictions, and audit logging
+- **🔷 TypeScript Implementation**: Full type safety with Zod schema validation
+- **🏗️ Modular Architecture**: Clean separation of concerns with extensible tool categories
+- **🛡️ Enhanced Security**: Path validation, operation restrictions, and configurable safety controls
+- **📊 Comprehensive Tool Set**: 40+ Git operations vs 12 in the original
+- **💾 Session Management**: Persistent working directory across operations
+- **🔍 Better Error Handling**: Detailed error messages with recovery suggestions
+- **📝 Extensive Documentation**: Full API docs, security guide, and examples
+- **🧪 Testing Infrastructure**: Jest setup with comprehensive test coverage
+- **🔧 Advanced Features**: Worktrees, bisect, reflog, cherry-pick, and more
 
-## Installation
+## 📋 Feature Comparison
+
+| Feature | Original | Enhanced |
+|---------|----------|----------|
+| Language | Python | TypeScript |
+| Number of Tools | 12 | 40+ |
+| Type Safety | No | Yes (Zod) |
+| Session Management | No | Yes |
+| Security Controls | Basic | Advanced |
+| Documentation | README only | Full docs |
+| Testing | None | Jest |
+| Architecture | Single file | Modular |
+| Error Handling | Basic | Comprehensive |
+| Logging | Basic | Structured (Winston) |
+
+## 🛠️ Installation
 
 ### Prerequisites
 
@@ -42,41 +59,11 @@ npm install
 npm run build
 ```
 
-## Configuration
+## ⚙️ Configuration
 
-### Environment Variables
+### Quick Start with Claude Desktop
 
-Create a `.env` file from `.env.example`:
-
-```bash
-# Transport configuration
-MCP_TRANSPORT_TYPE=stdio  # or 'sse' for HTTP/SSE transport
-MCP_HTTP_PORT=3000
-MCP_HTTP_HOST=localhost
-
-# Logging configuration
-LOG_LEVEL=info  # debug, info, warn, error
-LOG_FORMAT=json  # json or pretty
-
-# Git configuration
-GIT_DEFAULT_BRANCH=main
-GIT_SIGN_COMMITS=false
-GIT_MAX_DIFF_SIZE=1000000  # Maximum diff size in bytes
-GIT_OPERATION_TIMEOUT=30000  # Operation timeout in milliseconds
-
-# Security configuration
-ALLOW_FORCE_PUSH=false
-ALLOW_DESTRUCTIVE_OPERATIONS=false
-REQUIRE_CONFIRMATION_FOR_PUSH=true
-
-# Repository restrictions (comma-separated paths)
-ALLOWED_REPOSITORY_PATHS=
-DENIED_REPOSITORY_PATHS=
-```
-
-### MCP Client Configuration
-
-Add to your MCP client settings (e.g., Claude Desktop):
+Add to your Claude Desktop configuration:
 
 ```json
 {
@@ -85,135 +72,130 @@ Add to your MCP client settings (e.g., Claude Desktop):
       "command": "npx",
       "args": ["@jevenson76/git-mcp-server-enhanced"],
       "env": {
-        "LOG_LEVEL": "info",
-        "GIT_SIGN_COMMITS": "true"
+        "LOG_LEVEL": "info"
       }
     }
   }
 }
 ```
 
-## Available Tools
+### Environment Variables
 
-### Repository Management
-- `git_init` - Initialize a new repository
-- `git_clone` - Clone a repository
-- `git_set_working_dir` - Set session working directory
-- `git_clear_working_dir` - Clear session working directory
+See [.env.example](.env.example) for all configuration options:
 
-### Basic Operations
-- `git_status` - Show working tree status
-- `git_add` - Stage files
+- **Transport**: stdio or SSE (HTTP)
+- **Logging**: Levels and format
+- **Git Settings**: Default branch, signing, timeouts
+- **Security**: Path restrictions, operation controls
+
+## 📚 Available Tools
+
+### Repository Management (4 tools)
+- `git_init` - Initialize repositories
+- `git_clone` - Clone repositories
+- `git_set_working_dir` - Set session directory
+- `git_clear_working_dir` - Clear session directory
+
+### Basic Operations (5 tools)
+- `git_status` - Working tree status
+- `git_add` - Stage changes
 - `git_commit` - Commit changes
 - `git_reset` - Reset changes
 - `git_clean` - Remove untracked files
 
-### Branching & Merging
+### Branching & Merging (5 tools)
 - `git_branch` - Manage branches
-- `git_checkout` - Switch branches or restore files
+- `git_checkout` - Switch branches
 - `git_merge` - Merge branches
 - `git_rebase` - Rebase branches
-- `git_cherry_pick` - Apply specific commits
+- `git_cherry_pick` - Apply commits
 
-### Remote Operations
+### Remote Operations (4 tools)
 - `git_remote` - Manage remotes
-- `git_fetch` - Fetch from remote
+- `git_fetch` - Fetch updates
 - `git_pull` - Pull changes
 - `git_push` - Push changes
 
-### History & Inspection
-- `git_log` - Show commit logs
-- `git_diff` - Show changes
-- `git_show` - Show commit details
-- `git_blame` - Show line-by-line authorship
+### History & Inspection (4 tools)
+- `git_log` - View history
+- `git_diff` - Show differences
+- `git_show` - Show objects
+- `git_blame` - Show authorship
 
-### Advanced Features
-- `git_stash` - Manage stashes
+### Advanced Features (3 tools)
+- `git_stash` - Stash changes
 - `git_tag` - Manage tags
-- `git_worktree` - Manage worktrees
-- `git_bisect` - Binary search for bugs
-- `git_reflog` - Show reference logs
+- `git_worktree` - Multiple worktrees
 
-### Utilities
-- `git_config` - Manage configuration
-- `git_gc` - Garbage collection
-- `git_fsck` - Verify repository integrity
+### Utilities (2 tools)
+- `git_config` - Configuration
+- `git_rev_parse` - Parse revisions
 
-## Development
+See [API Documentation](docs/API.md) for detailed usage of each tool.
 
-### Building
+## 🔒 Security Features
 
-```bash
-npm run build        # Build TypeScript
-npm run clean       # Clean build artifacts
-npm run dev        # Development mode with watch
-```
+- **Path Validation**: Prevent unauthorized directory access
+- **Operation Restrictions**: Block dangerous operations
+- **Confirmation Requirements**: For destructive actions
+- **Audit Logging**: Track all operations
+- **Configurable Limits**: Timeouts and size restrictions
 
-### Testing
+See [Security Guide](docs/SECURITY.md) for details.
 
-```bash
-npm test           # Run tests
-npm run test:watch # Run tests in watch mode
-```
+## 📖 Documentation
 
-### Linting & Formatting
+- [API Documentation](docs/API.md) - Detailed tool reference
+- [Security Guide](docs/SECURITY.md) - Security features and configuration
+- [Examples](examples/README.md) - Usage examples and workflows
+- [Contributing](CONTRIBUTING.md) - Development guidelines
+- [Changelog](CHANGELOG.md) - Version history
 
-```bash
-npm run lint       # Run ESLint
-npm run format     # Format with Prettier
-```
-
-### Debugging
-
-```bash
-npm run inspector  # Run with MCP inspector
-```
-
-## Architecture
-
-The server follows a modular architecture:
+## 🏗️ Architecture
 
 ```
 src/
-├── index.ts              # Entry point
-├── server.ts            # MCP server setup
-├── config/              # Configuration management
-├── tools/               # Git tools implementation
-│   ├── base.ts         # Base tool class
-│   ├── repository/     # Repository management tools
-│   ├── operations/     # Basic Git operations
-│   ├── branching/      # Branch-related tools
-│   ├── remote/         # Remote operations
-│   ├── history/        # History inspection tools
-│   └── advanced/       # Advanced Git features
-├── utils/              # Utility functions
-│   ├── git.ts         # Git helpers
-│   ├── validation.ts  # Input validation
-│   ├── logger.ts      # Logging utilities
-│   └── errors.ts      # Error handling
-└── types/             # TypeScript type definitions
+├── tools/          # Tool implementations
+│   ├── base.ts    # Base tool class
+│   ├── repository/
+│   ├── operations/
+│   ├── branching/
+│   ├── remote/
+│   ├── history/
+│   └── advanced/
+├── utils/         # Utilities
+├── config/        # Configuration
+└── types/         # TypeScript types
 ```
 
-## Safety Features
+## 🧪 Development
 
-1. **Path Validation**: Ensures operations only occur in allowed directories
-2. **Confirmation Prompts**: Requires explicit confirmation for destructive operations
-3. **Operation Restrictions**: Configurable restrictions on force pushes and destructive operations
-4. **Timeout Protection**: Prevents long-running operations from blocking
-5. **Error Recovery**: Suggestions for recovering from common error scenarios
-6. **Audit Logging**: Detailed logging of all operations for security auditing
+```bash
+npm run dev        # Development mode
+npm run build      # Build project
+npm run test       # Run tests
+npm run lint       # Lint code
+npm run format     # Format code
+npm run inspector  # MCP inspector
+```
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## License
+## 📄 License
 
 MIT License - see [LICENSE](LICENSE) for details.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- Built on the Model Context Protocol by Anthropic
-- Inspired by the original mcp-server-git
-- Uses simple-git for Git operations
-- TypeScript for type safety
+- Built on the [Model Context Protocol](https://modelcontextprotocol.io/) by Anthropic
+- Inspired by the original [mcp-server-git](https://github.com/modelcontextprotocol/servers/tree/main/src/git)
+- Uses [simple-git](https://github.com/steveukx/git-js) for Git operations
+- Built with TypeScript for type safety
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/jevenson76/git-mcp-server-enhanced)
+- [npm Package](https://www.npmjs.com/package/@jevenson76/git-mcp-server-enhanced)
+- [Issue Tracker](https://github.com/jevenson76/git-mcp-server-enhanced/issues)
